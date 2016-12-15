@@ -1,4 +1,4 @@
-@extends('index')
+@extends('index1')
 
 @section('content')
 <p><a href="{{ URL::route('new-course') }}" class="btn btn-success">add new</a></p>
