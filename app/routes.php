@@ -17,3 +17,6 @@ Route::get('/', function()
 });
 
 Route::resource('nerds', 'NerdController');
+Route::resource('courses', 'CourseController');
+Route::resource('sections', 'SectionController');
+Route::resource('lessons', 'LessonController');

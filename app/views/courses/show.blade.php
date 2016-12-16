@@ -1,4 +1,4 @@
-@extends('index')
+@extends('courses.index1')
 
 @section('content')
 

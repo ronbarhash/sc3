@@ -1,11 +1,11 @@
 <?php
-class CourseController extends BaseController {
+class CourseController extends \BaseController {
     public function index()
 	{
-        $courses = Course::get();
+        $courses = Course::all();
 
 		return View::make('courses.index')
-            ->with(['courses'=>$courses]);
+            ->with('courses',$courses);
 	}
 
     public function getCourse($id)
@@ -42,21 +42,20 @@ class CourseController extends BaseController {
 	{
         $rules = array(
 			'title'       => 'required',
-			'img_src'      => 'required'
+
 		);
 
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
 			return Redirect::to('courses/create')
-				->withErrors($validator)
-				->withInput(Input::except('img_src'));
+				->withErrors($validator);
+				//->withInput(Input::except('img_src'));
 		} else {
 			// store
-			$course = new COurse;
-			$course->name       = Input::get('title');
-			$course->email      = Input::get('img_src');
-
+			$course = new Course;
+			$course->title       = Input::get('title');
+			$course->img_src      = Input::get('img_src');
 			$course->save();
 
             // redirect
@@ -84,21 +83,21 @@ class CourseController extends BaseController {
 	public function update($id)
 	{
         $rules = array(
-			'title'       => 'required',
-			'img_src'      => 'required'
+			'title'       => 'required'
+			//'img_src'      => 'required'
 		);
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
             return Redirect::to('courses/' . $id . '/edit')
-                ->withErrors($validator)
-                ->withInput(Input::except('img_src'));
+                ->withErrors($validator);
+                // ->withInput(Input::except('img_src'));
         } else {
             $course = Course::find($id);
-            $course->title = Imput::get('title');
-            $course->img_src = Imput::get('img_src');
+            $course->title = Input::get('title');
+            $course->img_src = Input::get('img_src');
+            $course->save();
 
-            $course.save();
             Session::flash('message','Successfully updates Course!');
             return Redirect::to('courses');
         }
@@ -109,8 +108,9 @@ class CourseController extends BaseController {
         $course = Course::find($id);
         $course->delete();
 
-        Secction::flash('message', 'Successfully deleted the course!');
-        return Redirect::route('courses');
+        Session::flash('message', 'Successfully deleted the course!');
+        return Redirect::route('courses.index')
+            ->with('total_cost',1);
 	}
 
 }
