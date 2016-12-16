@@ -11,23 +11,14 @@ class SectionController extends \BaseController {
             ->with('sections', $sections);
 	}
 
-	 public function addSection()
-     {
-		// dd();
-        // 	$course = Course::where($id_course)->first();
-        // 	dd($course);
-        // 	return View::make('shop.addsection');
-    }
-
 	public function create()
 	{
-        // dd($id);
 		return View::make('sections.create');
 	}
 
 	public function store()
     {
-		$rules = array('title' => 'required|min:3|max:200'  );
+		$rules = array('title_section' => 'required|min:3|max:200');
 		$validator = Validator::make(Input::all(), $rules);
 
 			// dd($validator->fails());
@@ -37,7 +28,7 @@ class SectionController extends \BaseController {
 		}
 
 		$section = new Section;
-		$section-> title_section = Input::get('title');
+		$section-> title_section = Input::get('title_section');
 		$section-> description = Input::get('description');
 		$section-> id_course = Input::get('id_course');
 		$section->save();
@@ -64,7 +55,7 @@ class SectionController extends \BaseController {
 	public function update($id)
 	{
 		// TODO: Fix hidden title_section
-		$rules = array('title' => 'required|min:3|max:200'  );
+		$rules = array('title_section' => 'required|min:3|max:200'  );
 		$validator = Validator::make(Input::all(), $rules);
 
 			// dd($validator->fails());
@@ -74,7 +65,7 @@ class SectionController extends \BaseController {
 		}
 
 		$section = Section::find($id);
-		$section-> title_section = Input::get('title');
+		$section-> title_section = Input::get('title_section');
 		$section-> description = Input::get('description');
 		$section-> id_course = Input::get('id_course');
 		$section->save();

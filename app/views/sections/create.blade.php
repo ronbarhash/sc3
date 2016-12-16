@@ -9,20 +9,16 @@
 
     {{ Form::open(array('url' => 'sections')) }}
     <div class="form-group">
-        {{ Form::label('title', 'Title') }}
-        {{ Form::text('title', Input::old('title'), array('class' => 'form-control')) }}
+        {{ Form::label('title_section', 'Title') }}
+        {{ Form::text('title_section', Input::old('title_section'), array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
-        {{ Form::label('description', 'Title') }}
+        {{ Form::label('description', 'Description') }}
         {{ Form::text('description', Input::old('description'), array('class' => 'form-control')) }}
     </div>
-        <!-- <input type="text" name="title" value="" placeholder="Title"> -->
-        <!-- <input type="text" name="description" value="" placeholder="Description"> -->
         <input type="hidden" name="id_course" value="{{Session::get('cid')}}">
         <div class="form-group">
-            {{ Form::submit('Create the Course!', array('class' => 'btn btn-primary')) }}
-            <!-- <button type="submit" class="btn btn-primary">Create</button> -->
+            {{ Form::submit('Create the Section!', array('class' => 'btn btn-primary')) }}
         </div>
-        <!-- <button type="submit">Create</button> -->
     {{ Form::close() }}
 @stop

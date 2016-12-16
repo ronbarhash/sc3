@@ -11,8 +11,8 @@
 
     <div class="form-group">
         <!--TODO: Fix hidden title_section  -->
-        {{ Form::label('title', 'Title') }}
-        {{ Form::text('title', Input::old('title'), array('class' => 'form-control')) }}
+        {{ Form::label('title_section', 'Title') }}
+        {{ Form::text('title_section', Input::old('title_section'), array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
         {{ Form::label('description', 'Description') }}
