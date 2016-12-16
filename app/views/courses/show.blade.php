@@ -8,7 +8,7 @@
     <dir class="caption">
       <h3>{{$course->title}}</h3>
       <p>
-        TOTAL_COST грн
+        {{$costs}} грн
       </p>
     </dir>
   </div>
@@ -24,15 +24,15 @@
   <div class="panel-heading">{{$section->title_section}}&nbsp<span class="badge">{{ $costs }}</span>
       {{ Form::open(array('url' => 'sections/' . $section->id, 'class' => 'pull-right')) }}
           {{ Form::hidden('_method', 'DELETE') }}
-          {{ Form::submit('Delete1', array('class' => 'btn btn-xs btn-warning')) }}
+          {{ Form::submit('Delete', array('class' => 'btn btn-xs btn-warning')) }}
       {{ Form::close() }}
       <a class="btn btn-xs btn-info pull-right" href="{{ URL::to('sections/' . $section->id . '/edit') }}">Edit</a>
   </div>
   <div class="panel-body">
     <ul class="list-group">
-        <li> sdsads </li>
+        <li> {{---$lessons---}} </li>
     </ul>
-    <a href="{{ URL::route('lessons.create') }}" class="btn btn-sm btn-success">add lesson</a><br>
+    <a href="{{ URL::route('lessons.create')}}" class="btn btn-sm btn-success">add lesson</a><br>
   </div>
 </div>
 @endforeach

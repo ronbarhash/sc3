@@ -12,7 +12,9 @@ class LessonController extends \BaseController {
 
 	public function create()
 	{
-		return View::make('lessons.create');
+		$sid = Lesson::where('id_section','=',4)->first()->id_section;
+		return View::make('lessons.create')
+			->with('sid',$sid);
 	}
 
 	public function store()

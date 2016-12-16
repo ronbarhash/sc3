@@ -69,12 +69,13 @@ class CourseController extends \BaseController {
 		$course = Course::find($id);
         $sections = $course->sections;
         $costs = Course::find($id)->getSum();
-
-        // $lessons = Section::where($id)->lessons;
-        // foreach ($sections as $section) {
-        //     print_r($section);
-        //     # code...
-        // }
+        $lections =[];
+        foreach ($sections as $value) {
+          $l = Lesson::where('id_section',$value->id)->sum('price');
+        //   $lessons[$value->id] = Section::find($value->id)->lessons;
+          $lessons[$value->id] = Section::find($value->id)->get();
+        $section_sum[$value->id] = [];
+        }
         // dd($lessons);
         Session::put('cid', $id);
 

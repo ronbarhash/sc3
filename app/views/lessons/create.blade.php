@@ -7,7 +7,7 @@
 @endforeach
 
 @section('content')
-
+{{dd($sid)}}
 {{ Form::open(array('url' => 'lessons')) }}
 <div class="form-group">
     {{ Form::label('title_lesson', 'Title') }}
