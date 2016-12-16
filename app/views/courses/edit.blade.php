@@ -22,7 +22,7 @@
     </div>
 
     <div class="form-group">
-        {{ Form::submit('Create the Course!', array('class' => 'btn btn-primary')) }}
+        {{ Form::submit('Update the Course!', array('class' => 'btn btn-primary')) }}
         <!-- <button type="submit" class="btn btn-primary">Create</button> -->
     </div>
 

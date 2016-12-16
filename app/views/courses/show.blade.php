@@ -26,6 +26,7 @@
           {{ Form::hidden('_method', 'DELETE') }}
           {{ Form::submit('Delete1', array('class' => 'btn btn-xs btn-warning')) }}
       {{ Form::close() }}
+      <a class="btn btn-xs btn-info pull-right" href="{{ URL::to('sections/' . $section->id . '/edit') }}">Edit</a>
   </div>
   <div class="panel-body">
     <ul class="list-group">

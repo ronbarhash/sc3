@@ -32,7 +32,8 @@ class SectionController extends \BaseController {
 
 			// dd($validator->fails());
 		if($validator->fails()){
-			return Redirect::route('sections.create')->withErrors($validator);
+			return Redirect::route('sections.create')
+				->withErrors($validator);
 		}
 
 		$section = new Section;
@@ -41,7 +42,6 @@ class SectionController extends \BaseController {
 		$section-> id_course = Input::get('id_course');
 		$section->save();
 
-		Session::forget('cid');
 		return Redirect::to('courses/'.$section-> id_course);
 	}
 
@@ -49,7 +49,7 @@ class SectionController extends \BaseController {
     {
         $section = Section::find($id);
         return View::make('sections.edit')
-            ->with('section', $session);
+            ->with('section', $section);
     }
 
 	public function destroy($id)
@@ -61,8 +61,24 @@ class SectionController extends \BaseController {
 			return Redirect::to('courses/'.$cid);
 	}
 
-	public function show($id)
+	public function update($id)
 	{
-		//
+		// TODO: Fix hidden title_section
+		$rules = array('title' => 'required|min:3|max:200'  );
+		$validator = Validator::make(Input::all(), $rules);
+
+			// dd($validator->fails());
+		if($validator->fails()){
+			return Redirect::route('sections.create')
+				->withErrors($validator);
+		}
+
+		$section = Section::find($id);
+		$section-> title_section = Input::get('title');
+		$section-> description = Input::get('description');
+		$section-> id_course = Input::get('id_course');
+		$section->save();
+
+		return Redirect::to('courses/'.$section-> id_course);
     }
 }
