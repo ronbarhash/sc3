@@ -12,12 +12,17 @@ class CoursesTableSeeder extends Seeder
     $courses = array(
       array(
       'title' => 'PHP',
-      'img_src' => '#'
+      'img_src' => 'https://placeholdit.imgix.net/~text?txtsize=33&txt=150%C3%97150&w=150&h=150'
    ),
    array(
    'title' => 'HTML',
-   'img_src' => '#'
- ),);
+   'img_src' => 'https://placeholdit.imgix.net/~text?txtsize=33&txt=150%C3%97150&w=150&h=150'
+ ),
+ array(
+ 'title' => 'JAVA',
+ 'img_src' => 'https://placeholdit.imgix.net/~text?txtsize=33&txt=150%C3%97150&w=150&h=150'
+),
+);
 
  DB::table('courses')->insert($courses);
  }

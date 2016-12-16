@@ -13,10 +13,10 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return Redirect::to('courses');
 });
 
-Route::resource('nerds', 'NerdController');
+
 Route::resource('courses', 'CourseController');
 Route::resource('sections', 'SectionController');
 Route::resource('lessons', 'LessonController');
