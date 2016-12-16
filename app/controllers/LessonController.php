@@ -17,22 +17,22 @@ class LessonController extends \BaseController {
 
 	public function store()
 	{
-        $rules = array('title' => 'required|min:3|max:200'  );
+        $rules = array('title_lesson' => 'required|min:3|max:200'  );
 		$validator = Validator::make(Input::all(), $rules);
 
 			// dd($validator->fails());
 		if($validator->fails()){
-			return Redirect::route('sections.create')
+			return Redirect::route('lessons.create')
 				->withErrors($validator);
 		}
 
-		$section = new Section;
-		$section-> title_section = Input::get('title');
-		$section-> description = Input::get('description');
-		$section-> id_course = Input::get('id_course');
-		$section->save();
+		$lesson = new Lesson;
+		$lesson-> title_lesson = Input::get('title_lesson');
+		$lesson-> price = Input::get('price');
+		$lesson-> id_section = Input::get('id_section');
+		$lesson->save();
 
-		return Redirect::to('courses/'.$section-> id_course);
+		return Redirect::to('courses/'.Session::get('cid'));
 	}
 
 	public function edit($id)
@@ -53,7 +53,7 @@ class LessonController extends \BaseController {
 		//$cid =$section->id_course;
 
         $lesson->delete();
-			return Redirect::to('courses/'.$cid);
+			return Redirect::to('courses/'.Session::get('cid'));
 	}
 
 

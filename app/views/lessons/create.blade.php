@@ -10,8 +10,8 @@
 
 {{ Form::open(array('url' => 'lessons')) }}
 <div class="form-group">
-    {{ Form::label('title', 'Title') }}
-    {{ Form::text('title', Input::old('title'), array('class' => 'form-control')) }}
+    {{ Form::label('title_lesson', 'Title') }}
+    {{ Form::text('title_lesson', Input::old('title_lesson'), array('class' => 'form-control')) }}
 </div>
 <div class="form-group">
     {{ Form::label('price', 'Price') }}
