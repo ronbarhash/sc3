@@ -27,7 +27,7 @@ class SectionController extends \BaseController {
 
 	public function store()
     {
-		$rules = array('title' => 'required|min:3|max:200','description' => 'required|min:3|max:200',  );
+		$rules = array('title' => 'required|min:3|max:200'  );
 		$validator = Validator::make(Input::all(), $rules);
 
 			// dd($validator->fails());
@@ -41,7 +41,8 @@ class SectionController extends \BaseController {
 		$section-> id_course = Input::get('id_course');
 		$section->save();
 
-		return Redirect::to('sections');
+		Session::forget('cid');
+		return Redirect::to('courses/'.$section-> id_course);
 	}
 
     public function edit($id)
@@ -54,8 +55,10 @@ class SectionController extends \BaseController {
 	public function destroy($id)
     {
 		$section = Section::find($id);
+		$cid =$section->id_course;
+
         $section->delete();
-			return Redirect::route('courses/'.$id);
+			return Redirect::to('courses/'.$cid);
 	}
 
 	public function show($id)

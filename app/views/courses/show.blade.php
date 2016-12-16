@@ -21,7 +21,12 @@
 
 @foreach($sections as $section)
 <div class="panel panel-default">
-  <div class="panel-heading">{{$section->title_section}}&nbsp<span class="badge">{{ $costs }}</span><a href="{{ URL::route('sections.destroy',$section->id) }}" class="btn btn-danger btn-xs pull-right">del</a></div>
+  <div class="panel-heading">{{$section->title_section}}&nbsp<span class="badge">{{ $costs }}</span>
+      {{ Form::open(array('url' => 'sections/' . $section->id, 'class' => 'pull-right')) }}
+          {{ Form::hidden('_method', 'DELETE') }}
+          {{ Form::submit('Delete1', array('class' => 'btn btn-xs btn-warning')) }}
+      {{ Form::close() }}
+  </div>
   <div class="panel-body">
     <ul class="list-group">
         <li> sdsads </li>

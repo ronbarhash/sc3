@@ -69,6 +69,9 @@ class CourseController extends \BaseController {
 		$course = Course::find($id);
         $sections = $course->sections;
         $costs = Course::find($id)->getSum();
+
+        Session::put('cid', $id);
+
         // dd($costs);
         return View::make('courses.show')
             ->with('course',$course)
