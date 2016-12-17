@@ -14,7 +14,7 @@
   </div>
 </div>
 <!-- End  Course View -->
-<div class="col-xs-12 col-md-4">
+<div class="col-xs-12 col-md-8">
   <p>
     <a href="{{ URL::route('sections.create') }}" class="btn btn-success">add section</a></p>
 <!--  -->
@@ -35,7 +35,7 @@
             <ul class="list-group">
                 <li class="list-group-item">
                     {{$lesson->title_lesson}}
-                    <span class="badge ">{{$lesson->price}}</span>
+                    <span class="badge ">{{$lesson->price}} грн</span>
                     {{ Form::open(array('url' => 'lessons/' . $lesson->id . '/edit', 'method' => 'get', 'class' => 'pull-right')) }}
 
                         {{ Form::hidden('id_section', $section->id,array('class' => 'btn btn-xs btn-warning')) }}

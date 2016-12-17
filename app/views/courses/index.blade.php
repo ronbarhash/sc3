@@ -11,7 +11,7 @@
 			<dir class="caption">
 				<h3><a href="courses/{{ $course->id }}">{{$course->title}}</a></h3>
 				<p>
-					{{$course->getSum()}}
+					<h4>{{$course->getSum()}} грн</h4>
 				</p>
 			</dir>
 			<div>
