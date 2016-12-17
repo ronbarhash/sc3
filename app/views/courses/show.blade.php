@@ -21,7 +21,7 @@
 
 @foreach($sections as $section)
 <div class="panel panel-default">
-  <div class="panel-heading">{{$section->title_section}}&nbsp<span class="badge">{{ $costs }}</span>
+  <div class="panel-heading">{{$section->title_section}}&nbsp<span class="badge"> {{ $section_sum[ $section->id ]}} </span>
       <a class="btn btn-xs btn-info pull-right" href="{{ URL::to('sections/' . $section->id . '/edit') }}">Edit</a>
       {{ Form::open(array('url' => 'sections/' . $section->id, 'class' => 'pull-right')) }}
           {{ Form::hidden('_method', 'DELETE') }}
@@ -30,7 +30,10 @@
   </div>
   <div class="panel-body">
     <ul class="list-group">
-        <li> {{---$lessons---}} </li>
+        @foreach ($lessons[$section->id] as $lesson)
+
+        <li> {{$lesson->title_lesson}}  </li>
+        @endforeach
     </ul>
     {{ Form::open(array('url' => 'lessons/create', 'method' => 'get', 'class' => 'pull-right')) }}
 

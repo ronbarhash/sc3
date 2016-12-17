@@ -11,5 +11,6 @@ class Lesson extends Eloquent {
     {
         return $this->belongsTo('Session','id');
     }
+    
 
 }

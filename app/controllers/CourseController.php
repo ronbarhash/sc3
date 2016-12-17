@@ -22,14 +22,20 @@ class CourseController extends \BaseController {
         $section_sum = 4;
         foreach ($sections as $value) {
 
-          // $l = Lesson::where('id_section',$value->id)->sum('price');
+          $l = $value->section_price();
           // $lessons[$value->id] = Section::find($value->id)->lessons;
           //if($l>0)
-            // $section_sum[$value->id] = [];
+          dd($value->section_price);
+          $section_sum[$value->id] = $l;
         }
 
       //  $arr = ['course'=>$course, 'sections'=>$sections, 'lessons'=>$lessons, 'count'=>$section_sum, 'total_cost'=>$course->getSum() ];
-       $arr = ['course'=>$course,'total_cost'=>$course->getSum(),'sections'=>$sections,'count'=>$section_sum, ];
+       $arr = [
+           'course'=>$course,
+           'total_cost'=>$course->getSum(),
+           'sections'=>$sections,
+           'section_sum'=>$section_sum,
+        ];
         return View::make('shop.getCourse',$arr);
     }
 
@@ -67,22 +73,27 @@ class CourseController extends \BaseController {
 	public function show($id)
 	{
 		$course = Course::find($id);
-        $sections = $course->sections;
+        $sections = $course->sections()->get();
+        // dd($course->sections());
         $costs = Course::find($id)->getSum();
-        $lections =[];
-        foreach ($sections as $value) {
-          $l = Lesson::where('id_section',$value->id)->sum('price');
+        $lessons = [];
+        $section_sum = [];
+        foreach ($sections as $section) {
+        //   $l = Lesson::where('id_section',$section->id)->sum('price');
         //   $lessons[$value->id] = Section::find($value->id)->lessons;
-          $lessons[$value->id] = Section::find($value->id)->get();
-        $section_sum[$value->id] = [];
+            $l = $section->lessons()->sum('price');
+            $lessons[$section->id] = $section->lessons()->get();
+            $section_sum[$section->id] = $l;
         }
-        // dd($lessons);
+        // dd($section_sum);
         Session::put('cid', $id);
 
         // dd($costs);
         return View::make('courses.show')
             ->with('course',$course)
             ->with('sections',$sections)
+            ->with('section_sum',$section_sum)
+            ->with('lessons',$lessons)
             ->with('costs',$costs);
 	}
 
