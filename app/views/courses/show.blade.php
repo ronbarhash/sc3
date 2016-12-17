@@ -39,7 +39,7 @@
                     {{ Form::open(array('url' => 'lessons/' . $lesson->id . '/edit', 'method' => 'get', 'class' => 'pull-right')) }}
 
                         {{ Form::hidden('id_section', $section->id,array('class' => 'btn btn-xs btn-warning')) }}
-                        {{ Form::submit('Edit1', array('class' => 'btn btn-xs btn-info pull-right')) }}
+                        {{ Form::submit('Edit', array('class' => 'btn btn-xs btn-info pull-right')) }}
                     {{ Form::close() }}
 
                     {{ Form::open(array('url' => 'lessons/' . $lesson->id, 'class' => 'pull-right')) }}
