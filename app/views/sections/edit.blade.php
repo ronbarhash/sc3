@@ -9,8 +9,7 @@
 
     {{ Form::model($section, array('action' => array('SectionController@update', $section->id), 'method' => 'PUT')) }}
 
-    <div class="form-group">
-        <!--TODO: Fix hidden title_section  -->
+    <div class="form-group">        
         {{ Form::label('title_section', 'Title') }}
         {{ Form::text('title_section', Input::old('title_section'), array('class' => 'form-control')) }}
     </div>

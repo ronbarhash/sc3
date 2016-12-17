@@ -32,7 +32,23 @@
     <ul class="list-group">
         @foreach ($lessons[$section->id] as $lesson)
 
-        <li> {{$lesson->title_lesson}}  </li>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    {{$lesson->title_lesson}}
+                    <span class="badge ">{{$lesson->price}}</span>
+                    {{ Form::open(array('url' => 'lessons/' . $lesson->id . '/edit', 'method' => 'get', 'class' => 'pull-right')) }}
+
+                        {{ Form::hidden('id_section', $section->id,array('class' => 'btn btn-xs btn-warning')) }}
+                        {{ Form::submit('Edit1', array('class' => 'btn btn-xs btn-info pull-right')) }}
+                    {{ Form::close() }}
+
+                    {{ Form::open(array('url' => 'lessons/' . $lesson->id, 'class' => 'pull-right')) }}
+                        {{ Form::hidden('_method', 'DELETE') }}
+                        {{ Form::submit('Del', array('class' => 'btn btn-xs btn-warning')) }}
+                    {{ Form::close() }}
+                </li>
+            </ul>
+
         @endforeach
     </ul>
     {{ Form::open(array('url' => 'lessons/create', 'method' => 'get', 'class' => 'pull-right')) }}
@@ -40,11 +56,7 @@
         {{ Form::hidden('id_section', $section->id,array('class' => 'btn btn-xs btn-warning')) }}
         {{ Form::submit('Add', array('class' => 'btn btn-xs btn-success')) }}
     {{ Form::close() }}
-    <a class="btn btn-xs btn-info pull-right" href="{{ URL::to('lesson/' . $section->id . '/edit') }}">Edit</a>
-    {{ Form::open(array('url' => 'lessons/' . $section->id, 'class' => 'pull-right')) }}
-        {{ Form::hidden('_method', 'DELETE') }}
-        {{ Form::submit('Del', array('class' => 'btn btn-xs btn-warning')) }}
-    {{ Form::close() }}
+
   </div>
 </div>
 @endforeach

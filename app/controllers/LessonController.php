@@ -44,7 +44,22 @@ class LessonController extends \BaseController {
 
 	public function update($id)
 	{
-		//
+		$rules = array('title_lesson' => 'required|min:3|max:200'  );
+		$validator = Validator::make(Input::all(), $rules);
+
+			// dd($validator->fails());
+		if($validator->fails()){
+			return Redirect::route('lessons.create')
+				->withErrors($validator);
+		}
+
+		$lesson = Lesson::find($id);
+		$lesson-> title_lesson = Input::get('title_lesson');
+		$lesson-> price = Input::get('price');
+		$lesson-> id_section = Input::get('id_section');
+		$lesson->save();
+
+		return Redirect::to('courses/'.Session::get('cid'));
 	}
 
 	public function destroy($id)
