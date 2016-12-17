@@ -7,7 +7,7 @@
 @endforeach
 
 @section('content')
-{{dd($sid)}}
+
 {{ Form::open(array('url' => 'lessons')) }}
 <div class="form-group">
     {{ Form::label('title_lesson', 'Title') }}
@@ -19,7 +19,7 @@
 </div>
     <!-- <input type="text" name="title" value="" placeholder="Title"> -->
     <!-- <input type="text" name="description" value="" placeholder="Description"> -->
-    <input type="hidden" name="id_section" value="{{Session::get('sid')}}">
+    <input type="hidden" name="id_section" value="{{$_GET['id_section']}}">
     <div class="form-group">
         {{ Form::submit('Create the Lesson!', array('class' => 'btn btn-primary')) }}
         <!-- <button type="submit" class="btn btn-primary">Create</button> -->

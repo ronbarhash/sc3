@@ -7,7 +7,7 @@ class Lesson extends Eloquent {
         return $this::where('id_section',$id)->sum('price');
     }
 
-    public function lessons()
+    public function section()
     {
         return $this->belongsTo('Session','id');
     }
